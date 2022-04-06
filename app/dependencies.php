@@ -33,5 +33,13 @@ return function (ContainerBuilder $containerBuilder) {
         return $renderer;
     };
 
+    $container['ToDoListModel'] = DI\factory('\App\Factories\ToDoListModelFactory');
+
+    $container['ToDoListPageController'] = DI\factory('\App\Factories\ToDoListPageControllerFactory');
+
+    $container['AddToDoItemController'] = DI\factory('App\Factories\AddToDoItemControllerFactory');
+
+    $container['UpdateToDoItemController'] = DI\factory('\App\Factories\UpdateToDoItemControllerFactory');
+
     $containerBuilder->addDefinitions($container);
 };
