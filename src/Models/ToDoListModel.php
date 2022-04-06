@@ -13,7 +13,7 @@ class ToDoListModel
         $this->db = $db;
     }
 
-    public function getAllTodoItems():
+    public function getAllTodoItems(): array
     {
         $query = $this->db->prepare('SELECT * FROM `todos`');
         $query->execute();
