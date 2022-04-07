@@ -44,3 +44,8 @@ main {
     border-radius: 10px;
 }
 
+a {
+    text-decoration: none;
+    color: #f05c07;
+}
+
