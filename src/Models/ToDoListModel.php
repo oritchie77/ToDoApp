@@ -28,12 +28,15 @@ class ToDoListModel
 
     public function updateToDoItem($id, $status)
     {
-        if($status === 'on') {
-            $completeStatus = '1';
-        } else {
-            $completeStatus = '0';
+        if($status === 'done') {
+            $query = $this->db->prepare('UPDATE `todos` SET `complete_status` = 1 WHERE `id` = :id');
+            $query->execute(['id' => $id]);
+        } else if($status === 'reopen'){
+            $query = $this->db->prepare('UPDATE `todos` SET `complete_status` = 0 WHERE `id` = :id');
+            $query->execute(['id' => $id]);
+        } else if($status === 'achive') {
+            $query = $this->db->prepare('UPDATE `todos` SET `complete_status` = 2 WHERE `id` = :id');
+            $query->execute(['id' => $id]);
         }
-        $query = $this->db->prepare('UPDATE `todos` SET `complete_status` = 1 WHERE `id` = :id');
-        $query->execute(['id' => $id]);
     }
 }

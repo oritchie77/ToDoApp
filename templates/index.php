@@ -22,19 +22,19 @@
                     $output = '';
                     foreach($toDoItems as $toDoItem) {
                         if ($toDoItem['complete_status'] == 1){
-                            $output = '<form method="POST" class="item-card">' .
+                            $output = '<div class="item-card">' .
                                 '<p>' . $toDoItem['title'] . '</p>' .
                                 '<p>Complete</p>' .
-                                '</form>';
-                        } else {
-                                $output = '<form method="POST" class="item-card">' .
+                                '<a href="/taskComplete/?id=' . $toDoItem['id'] . '&status=reopen">Reopen task</a>' .
+                                '<a href="/taskComplete/?id=' . $toDoItem['id'] . '&status=achive">Achive task</a>' .
+                                '</div>';
+                        } else if ($toDoItem['complete_status'] == 0){
+                                $output = '<div class="item-card">' .
                                     '<p>' . $toDoItem['title'] . '</p>' .
-//                                    '<label class="switch">' .
-//                                    '<input type="checkbox" name="" id="">' .
-//                                    '<span class="slider round"></span>' .
-//                                    '</label>' .
-                                    '<a href="/taskComplete/?id=' . $toDoItem['id'] . '&status=done">complete task</a>' .
-                                    '</form>';
+                                    '<a href="/taskComplete/?id=' . $toDoItem['id'] . '&status=done">Complete task</a>' .
+                                    '</div>';
+                        } else {
+                            $output = '';
                         }
                         echo $output;
                     }
