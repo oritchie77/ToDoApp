@@ -15,37 +15,32 @@
 </body>
     <main>
         <section class="list-container">
-            <div class="table-header">
-            </div>
-            <div class="item-card-container">
-                <?php
-                    $output = '';
-                    foreach($toDoItems as $toDoItem) {
-                        if ($toDoItem['complete_status'] == 1){
+            <?php
+                $output = '';
+                foreach($toDoItems as $toDoItem) {
+                    if ($toDoItem['complete_status'] == 1){
+                        $output = '<div class="item-card">' .
+                            '<p>' . $toDoItem['title'] . '</p>' .
+                            '<p>Complete</p>' .
+                            '<a href="/taskComplete/?id=' . $toDoItem['id'] . '&status=reopen">Reopen task</a>' .
+                            '<a href="/taskComplete/?id=' . $toDoItem['id'] . '&status=achive">Achive task</a>' .
+                            '</div>';
+                    } else if ($toDoItem['complete_status'] == 0){
                             $output = '<div class="item-card">' .
                                 '<p>' . $toDoItem['title'] . '</p>' .
-                                '<p>Complete</p>' .
-                                '<a href="/taskComplete/?id=' . $toDoItem['id'] . '&status=reopen">Reopen task</a>' .
-                                '<a href="/taskComplete/?id=' . $toDoItem['id'] . '&status=achive">Achive task</a>' .
+                                '<a href="/taskComplete/?id=' . $toDoItem['id'] . '&status=done">Complete task</a>' .
                                 '</div>';
-                        } else if ($toDoItem['complete_status'] == 0){
-                                $output = '<div class="item-card">' .
-                                    '<p>' . $toDoItem['title'] . '</p>' .
-                                    '<a href="/taskComplete/?id=' . $toDoItem['id'] . '&status=done">Complete task</a>' .
-                                    '</div>';
-                        } else {
-                            $output = '';
-                        }
-                        echo $output;
+                    } else {
+                        $output = '';
                     }
-                ?>
-                <form class="item-card" method="POST">
-                    <input type="text" placeholder="Add a to do" name="title">
-                    <button type="submit">Add</button>
-                    <p></p>
-                </form>
-                
-            </div>
+                    echo $output;
+                }
+            ?>
+            <form class="item-card" method="POST">
+                <input type="text" placeholder="Add a to do" name="title">
+                <button type="submit">Add</button>
+                <p></p>
+            </form>
         </section>
     </main>
 </html>
